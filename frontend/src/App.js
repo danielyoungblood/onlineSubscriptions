@@ -1,11 +1,13 @@
-import './App.css';
+import "./App.css";
+import MainMenuPanel from "./components/MainMenuPanel";
+import CustomHeader from "./components/CustomHeader";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-       
-      </header>
+      <div className="header">
+        <CustomHeader />
+      </div>
     </div>
   );
 }
