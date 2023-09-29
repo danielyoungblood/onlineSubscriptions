@@ -39,6 +39,16 @@
   padding-top: 50px;
 }
 
+.mainMenu{
+    margin-left: 30%;
+    min-width: 300px;
+    padding-top: 50px;
+}
+
+.menuItems{
+    padding: 10px;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

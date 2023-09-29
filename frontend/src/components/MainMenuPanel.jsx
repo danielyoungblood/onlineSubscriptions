@@ -15,10 +15,10 @@ export default function MainMenuPanel() {
       <MDBCol sm='8' className='mb-3 mb-md-0'>
         <MDBCard>
           <MDBCardBody text='dark'>
-            <MDBBtn> 
+            <MDBBtn className='m-1' style={{ padding: '20px', width: '230px'}}> 
           list of subscriptions
             </MDBBtn>
-            <MDBBtn>
+            <MDBBtn className='m-1' style={{ padding: '20px', width: '230px'}}>
               subscription management
             </MDBBtn>
                   </MDBCardBody>
