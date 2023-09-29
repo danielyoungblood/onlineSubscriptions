@@ -6,7 +6,7 @@ const router = require("express").Router();
 router.get("/", async (req, res) => {
   console.log("get all subscriptions");
   db.select("*")
-    .from("onlineSubscriptions")
+    .from("services")
     .then((data) => {
       console.log(data);
       res.json(data);
@@ -22,7 +22,7 @@ router.post("/:id", (req, res) => {
   console.log("update subscriptions");
   const changes = req.body;
   const id = req.params.id;
-  db("onlineSubscriptions")
+  db("services")
     .where("id", "=", id)
     .update(changes)
     .then(() => {
@@ -46,7 +46,7 @@ router.get("/:id", (req, res) => {
   const id = req.params.id;
   console.log("id: " + id);
   db.select("*")
-    .from("subscriptions")
+    .from("services")
     .where("id", "=", id)
     .then((data) => {
       console.log(data);
@@ -63,7 +63,7 @@ router.delete("/:id", (req, res) => {
   const id = req.params.id;
   const subscriptionIdToDelete = Number(id);
   console.log(subscriptionIdToDelete);
-  db("onlineSubscriptions")
+  db("services")
     .where("id", "=", subscriptionIdToDelete)
     .del()
     .then(() => {
