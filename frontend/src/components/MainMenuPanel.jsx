@@ -16,11 +16,13 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import SelectSubscription from './SelectSubscription';
+import AddSubscription from './AddSubscription';
 
 
 export default function MainMenuPanel() {
   const [open, setOpen] = React.useState(false)
   const [openSubscription, setOpenSubscription] = React.useState(false)
+  const [openAddSubscription, SetOpenAddSubscription] = React.useState(false)
   function handleClickOpen(){
     setOpen(true);
   };
@@ -32,8 +34,14 @@ export default function MainMenuPanel() {
   }; 
   function handleCloseSubscription(){
     setOpenSubscription(false);
-  }
-  ;
+  };
+  function handleClickAddSubscription(){
+    SetOpenAddSubscription(true);
+  };
+  function handleCloseAddSubscription(){
+    SetOpenAddSubscription(false);
+  };
+
   return (
     <MDBRow>
       <MDBCol sm='8' className='mb-3 mb-md-0'>
@@ -42,7 +50,7 @@ export default function MainMenuPanel() {
             <MDBBtn className='m-1' style={{ padding: '20px', width: '230px'}} onClick={handleClickOpen}> 
           list of subscriptions
             </MDBBtn>
-            <MDBBtn className='m-1' style={{ padding: '20px', width: '230px'}}>
+            <MDBBtn className='m-1' style={{ padding: '20px', width: '230px'}} onClick={handleClickAddSubscription}>
               add subscription
             </MDBBtn>
             <MDBBtn MDBBtn className='m-1' style={{ padding: '20px', width: '230px'}}>
@@ -57,6 +65,8 @@ export default function MainMenuPanel() {
       />
       <SelectSubscription open={openSubscription}
         onClose={handleCloseSubscription}/>
+        <AddSubscription open={openAddSubscription}
+        onClose={handleCloseAddSubscription}/>
                   </MDBCardBody>
         </MDBCard>
       </MDBCol>

@@ -16,7 +16,17 @@ export default function SelectSubscription(props) {
   const [subscriptions, setSubscriptions] = useState([]);
   const [selectedSubscription, setSelectedSubscription] = useState("");
 
-    function handleRemove() {
+    async function handleRemove() {
+       const res = await fetch("http://127.0.0.1:81/subscriptions/" + selectedSubscription, {
+            method: 'DELETE',
+            headers: {'Content-Type': 'application/json'},
+        })
+        window.location.reload();
+      console.log("selected id: " + selectedSubscription)
+      onClose()
+  };
+
+  function handleCancel() {
       onClose()
   };
 
@@ -34,7 +44,7 @@ export default function SelectSubscription(props) {
         setSubscriptions(response);
       }
       getSubscriptions();
-  })
+  }, [])
 
   return (
     <div>  
@@ -67,6 +77,9 @@ export default function SelectSubscription(props) {
         <DialogActions>
             <Button onClick={handleRemove}>
             remove
+          </Button>
+          <Button onClick={handleCancel}>
+            cancel
           </Button>
         </DialogActions>
       </Dialog>
