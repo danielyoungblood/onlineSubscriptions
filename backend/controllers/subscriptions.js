@@ -79,7 +79,7 @@ router.delete("/:id", (req, res) => {
 //add one single subscription by id
 router.post("/", async (req, res) => {
   console.log("add one subscription");
-  const { subscriptionName, subscriptionCost, subscriptionFrequency, subscriptionCompanyId } = req.body;
+  const { name, cost, frequency, company_id} = req.body;
   console.log("req.body: " + JSON.stringify(req.body));
   const maxIdQuery = await db("services")
     .select("id")
@@ -95,11 +95,11 @@ router.post("/", async (req, res) => {
   }
   db("services")
     .insert({
-      name: subscriptionName,
-      cost: subscriptionCost,
-      frequency: subscriptionFrequency,
+      name: name,
+      cost: cost,
+      frequency: frequency,
       id: parseInt(maxId) + 1,
-      company_id: subscriptionCompanyId
+      company_id: company_id
     })
     .then(() => {
       console.log("subscriptions added");
