@@ -41,7 +41,7 @@ export default function SubscriptionListings(props) {
           <TableContainer component={Paper}>
       <Table width="100" aria-label="simple table">
         <TableHead>
-          <TableRow>
+          <TableRow sx={{backgroundColor: 'powderblue'}}>
             <TableCell>Name </TableCell>
             <TableCell align="left">frequency</TableCell>
             <TableCell align="center">cost</TableCell>
