@@ -9,42 +9,62 @@ import React, { useState, useEffect } from "react";
 import InputLabel from "@material-ui/core/InputLabel";
 import MenuItem from "@material-ui/core/MenuItem";
 import Select from "@material-ui/core/Select";
-import { TextField } from '@mui/material';
 
-const res = await fetch("http://127.0.0.1:81/subscriptions");
-var subscriptions = await res.json();
 
-export default function SelectSubscription(props) {
+export default function DeleteSubscription(props) {
   const {open, onClose} = props
-  const [selectedId, setSelectedId] = useState ("")
+  const [subscriptions, setSubscriptions] = useState([]);
+  const [selectedSubscription, setSelectedSubscription] = useState("");
+
+    async function handleRemove() {
+       const res = await fetch("http://127.0.0.1:81/subscriptions/" + selectedSubscription, {
+            method: 'DELETE',
+            headers: {'Content-Type': 'application/json'},
+        })
+        window.location.reload();
+      console.log("selected id: " + selectedSubscription)
+      onClose()
+  };
 
   function handleCancel() {
       onClose()
   };
 
-  async function handleSave() {
-      onClose()
-  };
+  useEffect(() => {
+
+      const getSubscriptions = async () => {
+        const res = await fetch("http://127.0.0.1:81/subscriptions", {
+            method: 'GET',
+            headers: {'Content-Type': 'application/json'},
+        })
+        console.log(res);
+        
+        const response = await res.json();
+        console.log(response);
+        setSubscriptions(response);
+      }
+      getSubscriptions();
+  }, [])
 
   return (
     <div>  
       <Dialog
         open={open}
-        onClose={handleCancel}
+        onClose={handleRemove}
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
+
       >
         <DialogTitle id="alert-dialog-title">
-          {"select a subscription"}
+          {"delete a subscription"}
         </DialogTitle>
         <DialogContent>
-            
           <InputLabel id="select-subscription">Subscriptions</InputLabel>
         <Select
       labelId="select-subscription-filled-label"
       id="select-subscription-filled"
-      value={selectedId}
-      onChange={(ev) => setSelectedId(ev.target.value)}
+      value={subscriptions}
+      onChange={(ev) => setSelectedSubscription(ev.target.value)}
     >
       <MenuItem value="">
         <em>None</em>
@@ -53,11 +73,10 @@ export default function SelectSubscription(props) {
         <MenuItem value={subscription.id}>{subscription.name}</MenuItem>
       )}
     </Select>
-                
-            </DialogContent>
+          </DialogContent>
         <DialogActions>
-            <Button type='submit' onClick={handleSave} >
-            save
+            <Button onClick={handleRemove}>
+            remove
           </Button>
           <Button onClick={handleCancel}>
             cancel

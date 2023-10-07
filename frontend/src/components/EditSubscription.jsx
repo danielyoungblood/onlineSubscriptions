@@ -19,39 +19,8 @@ export default function EditSubscription(props) {
   const [selectedCost, setSelectedCost] = useState(""); 
   const [selectedFrequency, setSelectedFrequency] = useState("");
   const [selectedCompanyId, setSelectedCompanyId] = useState("");
-  useEffect(() => {
-
-      const getSubscriptions = async () => {
-        const res = await fetch("http://127.0.0.1:81/subscriptions", {
-            method: 'GET',
-            headers: {'Content-Type': 'application/json'},
-        })
-        console.log(res);
-        
-        const response = await res.json();
-        console.log(response);
-        setSubscriptions(response);
-      }
-      getSubscriptions();
-  }, [])
-
-  useEffect(() => {
-  async function setSelectedSubscriptionId(selectedId){
-    setSelectedSubscription(selectedId); 
-    const res = await fetch("http://127.0.0.1:81/subscriptions/" + selectedId, {
-            method: 'GET',
-            headers: {'Content-Type': 'application/json'},
-        })
-        let row = await res.json();
-        console.log(row)
-    console.log("subscription id: " + selectedSubscription)
-    const [id, name, cost, frequency, company_id] = row
-    setSelectedName(name)
-    setSelectedCost(cost)
-    setSelectedFrequency(frequency)
-    setSelectedCompanyId(company_id)
-  };
- }, [])
+  
+ 
 
   function handleCancel() {
       onClose()
@@ -74,21 +43,7 @@ export default function EditSubscription(props) {
           {"edit a subscription"}
         </DialogTitle>
         <DialogContent>
-            
-          <InputLabel id="select-subscription">Subscriptions</InputLabel>
-        <Select
-      labelId="select-subscription-filled-label"
-      id="select-subscription-filled"
-      value={subscriptions}
-      onChange={(ev) => setSelectedSubscriptionId(ev.target.value)}
-    >
-      <MenuItem value="">
-        <em>None</em>
-      </MenuItem>
-      {subscriptions.map((subscription) =>
-        <MenuItem value={subscription.id}>{subscription.name}</MenuItem>
-      )}
-    </Select>
+     
                 <br></br> <br></br>
             <TextField defaultValue={selectedName} id="name" label="Name" name="name" variant="outlined" margin="normal" />
                 <br></br>

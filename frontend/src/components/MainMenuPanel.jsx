@@ -1,3 +1,4 @@
+import DeleteSubscription from './DeleteSubscription';
 import React from 'react';
 import {
   MDBCol,
@@ -20,33 +21,34 @@ import AddSubscription from './AddSubscription';
 import EditSubscription from './EditSubscription';
 
 export default function MainMenuPanel() {
-  const [open, setOpen] = React.useState(false)
-  const [openSubscription, setOpenSubscription] = React.useState(false)
-  const [openAddSubscription, SetOpenAddSubscription] = React.useState(false)
-  const [openEditSubscription, SetOpenEditSubscription] = React.useState(false)
-  function handleClickOpen(){
-    setOpen(true);
+  const [openListSubscriptions, setOpenListSubscriptions] = React.useState(false)
+  const [openAddSubscription, setOpenAddSubscription] = React.useState(false)
+  const [openSelectSubscription, setOpenSelectSubscription] = React.useState(false)
+  const [openDeleteSubscription, setOpenDeleteSubscription] =React.useState(false)
+
+  function handleOpenListSubscriptions(){
+    setOpenListSubscriptions(true);
   };
-  function handleClose(){
-    setOpen(false);
+  function handleCloseListSubscriptions(){
+    setOpenListSubscriptions(false);
   };
-  function handleClickOpenSubscription(){
-    setOpenSubscription(true);
+  function handleOpenDeleteSubscription(){
+    setOpenDeleteSubscription(true);
   }; 
-  function handleCloseSubscription(){
-    setOpenSubscription(false);
+  function handleCloseDeleteSubscription(){
+    setOpenDeleteSubscription(false);
   };
-  function handleClickAddSubscription(){
-    SetOpenAddSubscription(true);
+  function handleOpenAddSubscription(){
+    setOpenAddSubscription(true);
   };
   function handleCloseAddSubscription(){
-    SetOpenAddSubscription(false);
+    setOpenAddSubscription(false);
   };
-function handleClickEditSubscription(){
-    SetOpenEditSubscription(true);
+function handleOpenSelectSubscription(){
+    setOpenSelectSubscription(true);
   };
-  function handleCloseEditSubscription(){
-    SetOpenEditSubscription(false);
+  function handleCloseSelectSubscription(){
+    setOpenSelectSubscription(false);
   };
 
   return (
@@ -54,28 +56,28 @@ function handleClickEditSubscription(){
       <MDBCol sm='8' className='mb-3 mb-md-0'>
         <MDBCard>
           <MDBCardBody text='dark'>
-            <MDBBtn className='m-1' style={{ padding: '20px', width: '230px'}} onClick={handleClickOpen}> 
+            <MDBBtn className='m-1' style={{ padding: '20px', width: '230px'}} onClick={handleOpenListSubscriptions}> 
           list of subscriptions
             </MDBBtn>
-            <MDBBtn className='m-1' style={{ padding: '20px', width: '230px'}} onClick={handleClickAddSubscription}>
+            <MDBBtn className='m-1' style={{ padding: '20px', width: '230px'}} onClick={handleOpenAddSubscription}>
               add subscription
             </MDBBtn>
-            <MDBBtn MDBBtn className='m-1' style={{ padding: '20px', width: '230px'}} onClick={handleClickEditSubscription}>
+            <MDBBtn MDBBtn className='m-1' style={{ padding: '20px', width: '230px'}} onClick={handleOpenSelectSubscription}>
               edit subscription
             </MDBBtn>
-            <MDBBtn MDBBtn className='m-1' style={{ padding: '20px', width: '230px'}} onClick={handleClickOpenSubscription}>
+            <MDBBtn MDBBtn className='m-1' style={{ padding: '20px', width: '230px'}} onClick={handleOpenDeleteSubscription}>
               delete subscription
             </MDBBtn>
             <SubscriptionListings
-        open={open}
-        onClose={handleClose}
+        open={openListSubscriptions}
+        onClose={handleCloseListSubscriptions}
       />
-      <SelectSubscription open={openSubscription}
-        onClose={handleCloseSubscription}/>
+      <DeleteSubscription open={openDeleteSubscription}
+        onClose={handleCloseDeleteSubscription}/>
         <AddSubscription open={openAddSubscription}
         onClose={handleCloseAddSubscription}/>
-        <EditSubscription open={openEditSubscription}
-        onClose={handleCloseEditSubscription}/>
+        <SelectSubscription open={openSelectSubscription}
+        onClose={handleCloseSelectSubscription}/>
                   </MDBCardBody>
         </MDBCard>
       </MDBCol>
