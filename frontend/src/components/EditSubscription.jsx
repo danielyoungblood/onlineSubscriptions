@@ -12,7 +12,7 @@ import Select from "@material-ui/core/Select";
 import { TextField } from '@mui/material';
 
 export default function EditSubscription(props) {
-  const {open, onClose} = props
+  const {open, onClose, selectId, editName, editCost, editFrequency, editCompanyId} = props
   const [subscriptions, setSubscriptions] = useState([]);
   const [selectedSubscription, setSelectedSubscription] = useState("");
   const [selectedName, setSelectedName] = useState("");
@@ -20,7 +20,7 @@ export default function EditSubscription(props) {
   const [selectedFrequency, setSelectedFrequency] = useState("");
   const [selectedCompanyId, setSelectedCompanyId] = useState("");
   
- 
+
 
   function handleCancel() {
       onClose()
@@ -45,13 +45,13 @@ export default function EditSubscription(props) {
         <DialogContent>
      
                 <br></br> <br></br>
-            <TextField defaultValue={selectedName} id="name" label="Name" name="name" variant="outlined" margin="normal" />
+            <TextField defaultValue={editName} id="name" label="Name" name="name" variant="outlined" margin="normal" />
                 <br></br>
-                <TextField defaultValue={selectedCost} id="cost" label="Cost" name="cost" variant="outlined" margin="normal" />
+                <TextField defaultValue={editCost} id="cost" label="Cost" name="cost" variant="outlined" margin="normal" />
                 <br></br>
-                <TextField defaultValue={selectedFrequency} id="frequency" label="Frequency" name="frequency" variant="outlined" margin="normal" />
+                <TextField defaultValue={editFrequency} id="frequency" label="Frequency" name="frequency" variant="outlined" margin="normal" />
                 <br></br>
-                <TextField defaultValue={selectedCompanyId} id="company_id" label="Company_id" name="company_id" variant="outlined" margin="normal" />
+                <TextField defaultValue={editCompanyId} id="company_id" label="Company_id" name="company_id" variant="outlined" margin="normal" />
                 <br></br>
             </DialogContent>
         <DialogActions>

@@ -59,8 +59,9 @@ export default function DeleteSubscription(props) {
           {"delete a subscription"}
         </DialogTitle>
         <DialogContent>
-          <InputLabel id="select-subscription">Subscriptions</InputLabel>
+          <InputLabel id="select-subscription-filled-label">Subscriptions</InputLabel>
         <Select
+        sx={{ minWidth: 160 }}
       labelId="select-subscription-filled-label"
       id="select-subscription-filled"
       value={subscriptions}

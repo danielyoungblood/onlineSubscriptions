@@ -10,20 +10,41 @@ import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import Select from "@mui/material/Select";
 import { TextField } from '@mui/material';
+import EditSubscription from './EditSubscription';
 
 const res = await fetch("http://127.0.0.1:81/subscriptions");
 var subscriptions = await res.json();
+console.log("data: "+ JSON.stringify(subscriptions))
 
 export default function SelectSubscription(props) {
   const {open, onClose} = props
   const [selectedId, setSelectedId] = useState ("")
-
+  const [openEditSubscription, setOpenEditSubscription] = useState ("")
+  const [fetchedName, setFetchedName] = useState("");
+  const [fetchedCost, setFetchedCost] = useState(""); 
+  const [fetchedFrequency, setFetchedFrequency] = useState("");
+  const [fetchedCompanyId, setFetchedCompanyId] = useState("");
+  const [fetchedId, setFetchedId] = useState("");
+  
   function handleCancel() {
       onClose()
   };
 
-  async function handleSave() {
-      onClose()
+  function handleClickCancelEdit (){
+    setOpenEditSubscription(false)
+  };
+
+  async function handleEdit() {
+    const res = await fetch("http://127.0.0.1:81/subscriptions/"+selectedId);
+    var subscription = await res.json();
+    console.log("selected subscription: "+JSON.stringify(subscription))
+    const {id, name, cost, frequency, company_id} = subscription[0];
+        setFetchedId(id);
+        setFetchedName(name);
+        setFetchedCost(cost);
+        setFetchedFrequency(frequency);
+        setFetchedCompanyId(company_id);
+        setOpenEditSubscription(true)
   };
 
   return (
@@ -39,8 +60,9 @@ export default function SelectSubscription(props) {
         </DialogTitle>
         <DialogContent>
             
-          <InputLabel id="select-subscription">Subscriptions</InputLabel>
+          <InputLabel id="select-subscription-filled-label">Subscriptions</InputLabel>
         <Select
+        sx={{ minWidth: 160 }}
       labelId="select-subscription-filled-label"
       id="select-subscription-filled"
       value={selectedId}
@@ -56,14 +78,15 @@ export default function SelectSubscription(props) {
                 
             </DialogContent>
         <DialogActions>
-            <Button type='submit' onClick={handleSave} >
-            save
+            <Button onClick={handleEdit} >
+            edit
           </Button>
           <Button onClick={handleCancel}>
             cancel
           </Button>
         </DialogActions>
       </Dialog>
+      <EditSubscription open={openEditSubscription} onClose={handleClickCancelEdit} selectId={selectedId} editName={fetchedName} editCost={fetchedCost} editFrequency={fetchedFrequency} editCompanyId={fetchedCompanyId}/>
     </div>
   );
 }
