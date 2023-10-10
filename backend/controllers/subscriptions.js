@@ -19,14 +19,14 @@ router.get("/", async (req, res) => {
 
 //update subscription by id
 router.post("/:id", (req, res) => {
-  console.log("update subscriptions");
   const changes = req.body;
   const id = req.params.id;
+  console.log("update subscription, id=" + id);
   db("services")
     .where("id", "=", id)
     .update(changes)
     .then(() => {
-      console.log("updated subscriptions");
+      console.log("updated subscription, id=" + id);
       return res.redirect("http://localhost:3000/"); //this actual sets the url in the address bar on the client browser to this
     })
     .catch((err) => {
@@ -79,13 +79,13 @@ router.delete("/:id", (req, res) => {
 //add one single subscription by id
 router.post("/", async (req, res) => {
   console.log("add one subscription");
-  const { name, cost, frequency, company_id} = req.body;
+  const { name, cost, frequency, company_id } = req.body;
   console.log("req.body: " + JSON.stringify(req.body));
   const maxIdQuery = await db("services")
     .select("id")
     .orderByRaw("id DESC")
     .first();
-    console.log(JSON.stringify(maxIdQuery));
+  console.log(JSON.stringify(maxIdQuery));
   if (maxIdQuery === undefined) {
     maxId = "0";
     console.log("No data exists, using initial id of 0");
@@ -99,7 +99,7 @@ router.post("/", async (req, res) => {
       cost: cost,
       frequency: frequency,
       id: parseInt(maxId) + 1,
-      company_id: company_id
+      company_id: company_id,
     })
     .then(() => {
       console.log("subscriptions added");
