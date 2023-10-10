@@ -14,7 +14,6 @@ import { TextField } from '@mui/material';
 export default function EditSubscription(props) {
   const {open, onClose, selectId, editName, editCost, editFrequency, editCompanyId} = props
   const [subscriptions, setSubscriptions] = useState([]);
-  const [selectedSubscription, setSelectedSubscription] = useState("");
   const [selectedName, setSelectedName] = useState("");
   const [selectedCost, setSelectedCost] = useState(""); 
   const [selectedFrequency, setSelectedFrequency] = useState("");
@@ -38,13 +37,13 @@ export default function EditSubscription(props) {
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
       >
-        <form method='POST' action={"http://127.0.0.1:81/subscriptions/"+ selectedSubscription}>
+        <form method='POST' action={"http://127.0.0.1:81/subscriptions/"+ selectId}>
         <DialogTitle id="alert-dialog-title">
           {"edit a subscription"}
         </DialogTitle>
         <DialogContent>
      
-                <br></br> <br></br>
+                
             <TextField defaultValue={editName} id="name" label="Name" name="name" variant="outlined" margin="normal" />
                 <br></br>
                 <TextField defaultValue={editCost} id="cost" label="Cost" name="cost" variant="outlined" margin="normal" />
