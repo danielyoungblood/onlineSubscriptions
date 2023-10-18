@@ -31,7 +31,7 @@ export default function DeleteSubscription(props) {
   useEffect(() => {
 
       const getSubscriptions = async () => {
-        const res = await fetch("http://127.0.0.1:81/subscriptions", {
+        const res = await fetch("https://onlinesubscriptionsapi-8fec69ac21bc.herokuapp.com/subscriptions", {
             method: 'GET',
             headers: {'Content-Type': 'application/json'},
         })
