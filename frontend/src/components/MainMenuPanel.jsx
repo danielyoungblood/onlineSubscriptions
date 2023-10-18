@@ -5,20 +5,11 @@ import {
   MDBRow,
   MDBCard,
   MDBCardBody,
-  MDBCardTitle,
-  MDBCardText,
   MDBBtn,
 } from 'mdb-react-ui-kit';
 import SubscriptionListings from './SubscriptionListings';
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
 import SelectSubscription from './SelectSubscription';
 import AddSubscription from './AddSubscription';
-import EditSubscription from './EditSubscription';
 
 export default function MainMenuPanel() {
   const [openListSubscriptions, setOpenListSubscriptions] = React.useState(false)

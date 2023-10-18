@@ -3,10 +3,7 @@ import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
-import { MDBBtn} from 'mdb-react-ui-kit';
-import TextField from '@mui/material/TextField';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -15,7 +12,7 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 
-const response = await fetch('http://127.0.0.1:81/subscriptions');
+const response = await fetch('https://onlinesubscriptionsapi-8fec69ac21bc.herokuapp.com/subscriptions');
 var rows = await response.json();
 
 export default function SubscriptionListings(props) {

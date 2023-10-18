@@ -2,17 +2,14 @@ import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
-import { MDBBtn} from 'mdb-react-ui-kit';
 import React, { useState, useEffect } from "react";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import Select from "@mui/material/Select";
-import { TextField } from '@mui/material';
 import EditSubscription from './EditSubscription';
 
-const res = await fetch("http://127.0.0.1:81/subscriptions");
+const res = await fetch("https://onlinesubscriptionsapi-8fec69ac21bc.herokuapp.com/subscriptions");
 var subscriptions = await res.json();
 console.log("data: "+ JSON.stringify(subscriptions))
 
@@ -35,7 +32,7 @@ export default function SelectSubscription(props) {
   };
 
   async function handleEdit() {
-    const res = await fetch("http://127.0.0.1:81/subscriptions/"+selectedId);
+    const res = await fetch("https://onlinesubscriptionsapi-8fec69ac21bc.herokuapp.com/subscriptions/"+selectedId);
     var subscription = await res.json();
     console.log("selected subscription: "+JSON.stringify(subscription))
     const {id, name, cost, frequency, company_id} = subscription[0];

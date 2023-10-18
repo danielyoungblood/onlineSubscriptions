@@ -2,9 +2,7 @@ import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
-import { MDBBtn} from 'mdb-react-ui-kit';
 import React, { useState, useEffect } from "react";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
@@ -17,7 +15,7 @@ export default function DeleteSubscription(props) {
   const [selectedSubscription, setSelectedSubscription] = useState("");
 
     async function handleRemove() {
-       const res = await fetch("http://127.0.0.1:81/subscriptions/" + selectedSubscription, {
+       const res = await fetch("https://onlinesubscriptionsapi-8fec69ac21bc.herokuapp.com/subscriptions/" + selectedSubscription, {
             method: 'DELETE',
             headers: {'Content-Type': 'application/json'},
         })

@@ -2,9 +2,7 @@ import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
-import { MDBBtn} from 'mdb-react-ui-kit';
 import React, { useState, useEffect } from "react";
 import InputLabel from "@material-ui/core/InputLabel";
 import MenuItem from "@material-ui/core/MenuItem";
@@ -19,10 +17,6 @@ export default function AddSubscription(props) {
   };
 
   async function handleSave() {
-     const res = await fetch("http://127.0.0.1:81/subscriptions", {
-            method: 'POST',
-            headers: {'Content-Type': 'application/json'},
-        })
       onClose()
   };
 
@@ -34,7 +28,7 @@ export default function AddSubscription(props) {
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
       >
-        <form method='POST' action='http://127.0.0.1:81/subscriptions'>
+        <form method='POST' action='https://onlinesubscriptionsapi-8fec69ac21bc.herokuapp.com/subscriptions'>
         <DialogTitle id="alert-dialog-title">
           {"add a subscription"}
         </DialogTitle>

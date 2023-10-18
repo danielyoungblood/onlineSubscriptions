@@ -2,13 +2,8 @@ import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
-import { MDBBtn} from 'mdb-react-ui-kit';
 import React, { useState, useEffect } from "react";
-import InputLabel from "@material-ui/core/InputLabel";
-import MenuItem from "@material-ui/core/MenuItem";
-import Select from "@material-ui/core/Select";
 import { TextField } from '@mui/material';
 
 export default function EditSubscription(props) {
@@ -37,7 +32,7 @@ export default function EditSubscription(props) {
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
       >
-        <form method='POST' action={"http://127.0.0.1:81/subscriptions/"+ selectId}>
+        <form method='POST' action={"https://onlinesubscriptionsapi-8fec69ac21bc.herokuapp.com/subscriptions/"+ selectId}>
         <DialogTitle id="alert-dialog-title">
           {"edit a subscription"}
         </DialogTitle>
